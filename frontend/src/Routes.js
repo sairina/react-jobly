@@ -8,31 +8,28 @@ import {
 function Routes() {
   return (
     <Switch>
-      <Route exact path="/">
-        <Home />
-      </Route>
-      <Route path="/companies">
+      <Route exact path="/companies">
         <SearchBar />
         <CompanyList />
       </Route>
-      <Route path="/companies/:company">
+      <Route exact path="/companies/:company">
         {/* filter over JobCards*/}
         <JobCard />
       </Route>
-      <Route path="/jobs">
+      <Route exact path="/jobs">
         <SearchBar />
         {/* map over JobCards*/}
         <JobCard />
       </Route>
-      <Route path="/login">
+      <Route exact path="/login">
         <UserForm />
         <Alert />
       </Route>
-      <Route path="/profile">
+      <Route exact path="/profile">
         <UserForm />
         <Alert />
       </Route>
-      <Route path="/">
+      <Route exact path="/">
         <Home />
       </Route>
       <Redirect to="/" />
