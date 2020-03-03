@@ -2,8 +2,12 @@ import React from 'react';
 
 function CompanyList(){
   return(
-    <SearchBar />
-    <Company />
+    <p>
+      Search bar
+      Company cards for each company
+    </p>
+    // <SearchBar />
+    // <Company />
   );
 }
 

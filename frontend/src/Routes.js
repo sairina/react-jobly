@@ -4,22 +4,24 @@ import {
   Route,
   Redirect
 } from 'react-router-dom';
+import CompanyList from './CompanyList';
+import Company from './Company';
+import JobList from './JobList';
+import UserForm from './UserForm';
+import Alert from './Alert';
+import Home from './Home';
 
 function Routes() {
   return (
     <Switch>
       <Route exact path="/companies">
-        <SearchBar />
         <CompanyList />
       </Route>
       <Route exact path="/companies/:company">
-        {/* filter over JobCards*/}
-        <JobCard />
+        <Company />
       </Route>
       <Route exact path="/jobs">
-        <SearchBar />
-        {/* map over JobCards*/}
-        <JobCard />
+        <JobList />
       </Route>
       <Route exact path="/login">
         <UserForm />

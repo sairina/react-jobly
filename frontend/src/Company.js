@@ -2,7 +2,12 @@ import React from 'react';
 
 function Company() {
   return (
-    <JobCard />
+    <p>
+      Company card (with description)
+      Job card
+     </p>
+    // <CompanyCard />
+    // <JobCards />
   );
 }
 

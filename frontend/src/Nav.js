@@ -11,7 +11,6 @@ function Nav() {
       <NavLink exact to='/profile'>Profile</NavLink>
       <NavLink exact to='/'>Log Out</NavLink>
     </nav>
-
   );
 }
 
