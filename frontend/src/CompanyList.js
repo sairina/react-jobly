@@ -7,40 +7,32 @@ import {v4 as uuid} from "uuid";
 function CompanyList() {
 
   const [companies, setCompanies] = useState([]);
-  const [foundItems, setFoundItems] = useState([]);
 
   useEffect(() => {
     async function getAllCompanies() {
       let response = await JoblyApi.getAllCompanies();
-      console.log('response', response);
+      // console.log('response', response);
       setCompanies(response);
     }
     getAllCompanies();
   }, []);
 
-  //this doesn't work yet; we want this function to update the state so that it populates
-  //company objects that match search term. need to figure out how to pass search term into 
-  //find all function
-  const filterBySearchTerm = () => {
-    setFoundItems(item => [
-      ...foundItems,
-      item
-    ])
+  const filterBySearchObject = async (searchObject) => {
+    console.log(searchObject)
+    let companies = await JoblyApi.getAllCompanies(searchObject);
+    setCompanies(companies);
+    console.log('companies after search', companies);
   }
 
-  console.log('foundItems is', foundItems);
-
-  let searchCompanies = foundItems.map(f => <CompanyCard key={uuid()}company={f} />)
-  // let allCompanies = companies.map(c => <CompanyCard key={uuid()} company={c} />)
-
-  // console.log(allCompanies);
+  // let searchCompanies = foundItems.map(f => <CompanyCard key={uuid()}company={f} />)
+  let allCompanies = companies.map(c => <CompanyCard key={uuid()} company={c} />)
 
   // const companiesDisplay = foundItems.length > 0 ?  searchCompanies: allCompanies;
   
    return (
     <div>
-      <SearchBar filterBySearchTerm={filterBySearchTerm} />
-      {/* {allCompanies} */}
+      <SearchBar filterBySearchObject={filterBySearchObject} />
+      {allCompanies}
     </div>
   );
 }

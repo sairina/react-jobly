@@ -1,20 +1,19 @@
 import React, { useState } from 'react';
 
-function SearchBar({ addSearchTerm }) {
-  const INITIAL_STATE = { searchTerm: "" };
-  const [searchTerm, setSearchTerm] = useState(INITIAL_STATE);
+function SearchBar({ filterBySearchObject }) {
+  const [searchObject, setSearchObject] = useState({ search: "" });
 
   const handleSubmit = evt => {
     evt.preventDefault();
-    console.log('searchTerm is', searchTerm)
+    console.log('searchObject is', searchObject)
 
-    filterBySearchTerm(searchTerm);
-    setSearchTerm(INITIAL_STATE);
+    filterBySearchObject(searchObject);
+    console.log('search term post', searchObject)
   };
 
   const handleChange = evt => {
     const { name, value } = evt.target;
-    setSearchTerm(sData => ({
+    setSearchObject(sData => ({
       ...sData,
       [name]: value
     }));
@@ -24,11 +23,11 @@ function SearchBar({ addSearchTerm }) {
     <div>
       <form onSubmit={handleSubmit}>
         <input
-          id="searchTerm"
-          name="searchTerm"
+          id="search"
+          name="search"
           type="text"
           placeholder="Search.."
-          value={searchTerm.searchTerm}
+          value={searchObject.search}
           onChange={handleChange}
         />
         <button>Submit</button>
