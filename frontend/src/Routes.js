@@ -11,7 +11,7 @@ import UserForm from './UserForm';
 import Alert from './Alert';
 import Home from './Home';
 
-function Routes() {
+function Routes({ setToken }) {
   return (
     <Switch>
       <Route exact path="/companies">
@@ -24,7 +24,7 @@ function Routes() {
         <JobList />
       </Route>
       <Route exact path="/login">
-        <UserForm />
+        <UserForm setToken={setToken} />
         {/* <Alert /> */}
       </Route>
       <Route exact path="/profile">

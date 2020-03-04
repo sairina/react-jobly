@@ -9,7 +9,8 @@ import Routes from "./Routes";
 // import UserContext from "./UserContext";
 
 function App() {
-  const [token, setToken] = useLocalStorage(null);
+  const [token, setToken] = useLocalStorage("_token");
+  console.log('token',token)
 
   return (
     <BrowserRouter>

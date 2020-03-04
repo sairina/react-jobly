@@ -1,18 +1,16 @@
 import React, { useState } from 'react';
+import JoblyApi from "./JoblyApi";
 
-function UserForm() {
+function UserForm({ setToken }) {
 
   const [formData, setFormData] = useState({ username: "", password: "" });
-  const [alert, setAlert] = useState(null);
-  
-  
+  // const [alert, setAlert] = useState(null);
 
-  const handleSubmit = evt => {
+  async function handleSubmit(evt) {
     evt.preventDefault();
-    
     try {
-      // hit backend login api, store token in localStorage
-      // login()
+      let response = await JoblyApi.login(formData);
+      setToken(response);
     } catch (err) {
       // setAlert(err);
     }
@@ -34,7 +32,7 @@ function UserForm() {
           id="username"
           name="username"
           type="text"
-          placeholder="Search.."
+          placeholder="Username"
           value={formData.username}
           onChange={handleChange}
         />
@@ -42,7 +40,7 @@ function UserForm() {
           id="password"
           name="password"
           type="text"
-          placeholder="Search.."
+          placeholder="Password"
           value={formData.password}
           onChange={handleChange}
         />
