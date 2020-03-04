@@ -5,10 +5,7 @@ function SearchBar({ filterBySearchObject }) {
 
   const handleSubmit = evt => {
     evt.preventDefault();
-    console.log('searchObject is', searchObject)
-
     filterBySearchObject(searchObject);
-    console.log('search term post', searchObject)
   };
 
   const handleChange = evt => {
