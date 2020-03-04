@@ -1,28 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import JoblyApi from './JoblyApi';
+import React from 'react';
 
-function CompanyCard(props) {
-  const [company, setCompany] = useState(null);
-
-  useEffect(() => {
-    async function getCompany() {
-      let c = await JoblyApi.getCompany(props.company);
-      setCompany({
-        name: c.name,
-        description: c.description,
-        logo_url: c.logo_url
-      });
-    }
-    getCompany();
-  }, [props.company]);
-
-  const pageContents = company ?
+function CompanyCard({ company }) {
+  const pageContents = 
     <div className="CompanyCard-details">
-      <h2>Company name: {company.name}</h2>
-      <p>Company description: {company.description}</p>
+      <h2>{company.name}</h2>
+      <p>{company.description}</p>
       <img src={company.logo_url} alt={company.name} />
-    </div>
-    : "Loading...";
+    </div>;
 
   return (
     <div className="CompanyCard">
