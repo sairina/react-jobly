@@ -25,7 +25,7 @@ function Routes() {
       </Route>
       <Route exact path="/login">
         <UserForm />
-        <Alert />
+        {/* <Alert /> */}
       </Route>
       <Route exact path="/profile">
         <UserForm />
