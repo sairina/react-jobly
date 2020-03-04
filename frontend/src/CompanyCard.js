@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 function CompanyCard({ company }) {
   const pageContents = 
@@ -10,7 +11,9 @@ function CompanyCard({ company }) {
 
   return (
     <div className="CompanyCard">
-      {pageContents}
+      <NavLink exact to={`/companies/${company.handle}`}>
+        {pageContents}
+      </NavLink>
     </div>
   );
 }
