@@ -9,15 +9,15 @@ function CompanyList() {
   const [companies, setCompanies] = useState([]);
 
   useEffect(() => {
-    async function getAllCompanies() {
-      let response = await JoblyApi.getAllCompanies();
+    async function getCompanies() {
+      let response = await JoblyApi.getCompanies();
       setCompanies(response);
     }
-    getAllCompanies();
+    getCompanies();
   }, []);
 
   const filterBySearchObject = async (searchObject) => {
-    let companies = await JoblyApi.getAllCompanies(searchObject);
+    let companies = await JoblyApi.getCompanies(searchObject);
     setCompanies(companies);
   }
 

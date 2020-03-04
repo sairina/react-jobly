@@ -1,19 +1,27 @@
 import React from 'react';
+import { BrowserRouter } from "react-router-dom";
+// import { decode } from "jsonwebtoken";
+import './App.css';
+import useLocalStorage from './hooks';
 import Nav from "./Nav";
 import Routes from "./Routes";
-import { BrowserRouter } from "react-router-dom";
-import './App.css';
+// import JoblyApi from "./JoblyApi";
+// import UserContext from "./UserContext";
 
 function App() {
-  return (
-    <div className="App">
-      <BrowserRouter>
-        <Nav />
-        <Routes />
-      </BrowserRouter>
+  const [token, setToken] = useLocalStorage(null);
 
-    </div>
+  return (
+    <BrowserRouter>
+      {/* <UserContext.Provider > */}
+        <div className="App">
+          <Nav />
+          <Routes setToken={setToken} />
+        </div>
+      {/* </UserContext.Provider> */}
+    </BrowserRouter>
   );
 }
 
 export default App;
+

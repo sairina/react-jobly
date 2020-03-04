@@ -1,11 +1,10 @@
 import axios from 'axios';
+import { TOKEN_STORAGE_ID } from "./App.js"
 
 class JoblyApi {
   static async request(endpoint, paramsOrData = {}, verb = "get") {
-    paramsOrData._token = ( // for now, hardcode token for "testing"
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc" +
-      "3RpbmciLCJpc19hZG1pbiI6ZmFsc2UsImlhdCI6MTU1MzcwMzE1M30." +
-      "COmFETEsTxN_VfIlgIKw0bYJLkvbRQNgO1XCSE8NZ0U");
+    
+    let _token = localStorage.getItem(TOKEN_STORAGE_ID);
 
     console.debug("API Call:", endpoint, paramsOrData, verb);
 
@@ -32,14 +31,24 @@ class JoblyApi {
     return res.company;
   }
 
-  static async getAllCompanies(searchTerm = {}) {
+  static async getCompanies(searchTerm = {}) {
     let res = await this.request(`companies`, searchTerm);
     return res.companies;
   }
 
-  static async getAllJobs(searchTerm = {}) {
+  static async getJobs(searchTerm = {}) {
     let res = await this.request(`jobs`, searchTerm);
     return res.jobs;
+  }
+
+  static async login(data) {
+    let res = await this.request(`login`, data, "post");
+    return res.token;
+  }
+  
+  static async getCurrentUser(username) {
+    let res = await this.request(`users/${username}`);
+    return res.user;
   }
 
 }

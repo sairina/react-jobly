@@ -8,15 +8,15 @@ function JobList(){
 
 
   useEffect(() => {
-    async function getAllJobs() {
-      let response = await JoblyApi.getAllJobs();
+    async function getJobs() {
+      let response = await JoblyApi.getJobs();
       setJobs(response);
     }
-    getAllJobs();
+    getJobs();
   }, []);
 
   const filterBySearchObject = async (searchObject) => {
-    let jobs = await JoblyApi.getAllJobs(searchObject);
+    let jobs = await JoblyApi.getJobs(searchObject);
     setJobs(jobs);
   }
 
