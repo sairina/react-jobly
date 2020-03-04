@@ -6,7 +6,9 @@ function SearchBar({ addSearchTerm }) {
 
   const handleSubmit = evt => {
     evt.preventDefault();
-    addSearchTerm(searchTerm);
+    console.log('searchTerm is', searchTerm)
+
+    filterBySearchTerm(searchTerm);
     setSearchTerm(INITIAL_STATE);
   };
 
