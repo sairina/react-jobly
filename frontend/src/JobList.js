@@ -1,14 +1,9 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { useHistory } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
 import SearchBar from './SearchBar';
 import JoblyApi from './JoblyApi';
 import JobCard from './JobCard';
-import UserContext from "./UserContext";
 
 function JobList() {
-  const { currentUser } = useContext(UserContext);
-  const history = useHistory();
-
   const [jobs, setJobs] = useState([]);
 
   useEffect(() => {
@@ -26,17 +21,14 @@ function JobList() {
 
   const allJobs = jobs.map(j => <JobCard job={j} key={j.id} />)
 
-  const pageDisplay =
-    <div>
-      <SearchBar filterBySearchObject={filterBySearchObject} />
-      <div className="JobList-Jobs">
-        {allJobs}
-      </div>
-    </div>
-
   return (
     <div className="JobList col-md-8 offset-md-2">
-      {!currentUser ? history.push('/') : pageDisplay}
+      <div>
+        <SearchBar filterBySearchObject={filterBySearchObject} />
+        <div className="JobList-Jobs">
+          {allJobs}
+        </div>
+      </div>
     </div>
   );
 }

@@ -1,44 +1,36 @@
-import React, { useContext } from 'react';
-import {
-  Switch,
-  Route,
-  Redirect
-} from 'react-router-dom';
-import UserContext from "./UserContext";
+import React from 'react';
+import { Switch, Route } from 'react-router-dom';
 import CompanyList from './CompanyList';
 import Company from './Company';
 import JobList from './JobList';
 import Login from './Login';
-import Alert from './Alert';
+// import Alert from './Alert';
 import Home from './Home';
 import Profile from './Profile';
+import PrivateRoute from "./PrivateRoute";
 
 function Routes({ loggedIn }) {
-  const { currentUser, setCurrentUser } = useContext(UserContext);
-
   return (
     <div className="pt-5">
       <Switch>
-        <Route exact path="/companies">
+        <PrivateRoute exact path="/companies">
           <CompanyList />
-        </Route>
-        <Route exact path="/companies/:company">
+        </PrivateRoute>
+        <PrivateRoute exact path="/companies/:company">
           <Company />
-        </Route>
-        <Route exact path="/jobs">
+        </PrivateRoute>
+        <PrivateRoute exact path="/jobs">
           <JobList />
-        </Route>
-        <Route exact path="/profile">
-          { currentUser ? <Profile /> : <Redirect to="/" /> }
-          {/* <div>TEST</div> */}
-        </Route>
+        </PrivateRoute>
+        <PrivateRoute exact path="/profile">
+          <Profile />
+        </PrivateRoute>
         <Route exact path="/login">
           <Login />
         </Route>
         <Route exact path="/">
           <Home loggedIn={loggedIn} />
         </Route>
-        <Redirect to="/" />
       </Switch>
     </div>
   );

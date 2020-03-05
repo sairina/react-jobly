@@ -1,13 +1,9 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { useParams, useHistory } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import { useParams } from "react-router-dom";
 import JoblyApi from './JoblyApi';
 import JobCard from './JobCard';
-import UserContext from "./UserContext";
 
 function Company() {
-  const { currentUser } = useContext(UserContext);
-  const history = useHistory();
-
   const { company } = useParams();
   const [companyObj, setCompanyObj] = useState({});
 
@@ -23,16 +19,13 @@ function Company() {
     companyObj.jobs.map(j => <JobCard job={j} key={j.id} />)
     : '';
 
-  const pageDisplay =
-    <div>
-      <h2>{companyObj.name}</h2>
-      <p>{companyObj.description}</p>
-      { jobCardsDisplay }
-    </div>
-
   return (
     <div>
-      {!currentUser ? history.push('/') : pageDisplay}
+      <div>
+        <h2>{companyObj.name}</h2>
+        <p>{companyObj.description}</p>
+        {jobCardsDisplay}
+      </div>
     </div>
   );
 }
