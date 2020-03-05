@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-// import './Nav.css';
+import './Nav.css';
 
 function Nav({ loggedIn, logOut }) {
   console.log('loggedIn', loggedIn)
@@ -19,15 +19,15 @@ function Nav({ loggedIn, logOut }) {
 
   let navBar = () => {
     return (
-      <ul>
-        <li><NavLink exact to='/'>Jobly</NavLink></li>
-        <li><NavLink exact to='/login'>Login</NavLink></li>
+      <ul className="Nav-navBar navbar-nav ml-auto">
+        <li><NavLink exact to='/login' className="nav-item mr-4">Login</NavLink></li>
       </ul>
     );
   };
 
   return (
-    <nav className="Nav">
+    <nav className="Nav navbar navbar-expand-lg">
+    <NavLink exact to='/' className="navbar-brand">Jobly</NavLink>
       {loggedIn ? navBarUser() : navBar()}
     </nav>
   );
