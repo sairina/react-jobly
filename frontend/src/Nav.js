@@ -3,7 +3,6 @@ import { NavLink } from 'react-router-dom';
 import './Nav.css';
 
 function Nav({ loggedIn, logOut }) {
-  // console.log('loggedIn', loggedIn)
 
   let navBarUser = () => {
     return (

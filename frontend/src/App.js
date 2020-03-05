@@ -14,14 +14,13 @@ function App() {
   const [currentUser, setCurrentUser] = useState(null);
 
   useEffect(() => {
-    let validToken = token ? true : false;
-    if(validToken) {
+    if (localStorage.getItem("_token")) {
       const getUser = async () => {
         let { username } = decode(token);
-        let response = await JoblyApi.getCurrentUser(username); 
+        let response = await JoblyApi.getCurrentUser(username);
         setCurrentUser(response);
       }
-      setLoggedIn(validToken);
+      setLoggedIn(token);
       getUser();
     }
   }, [token])
@@ -33,11 +32,11 @@ function App() {
 
   return (
     <BrowserRouter>
-      <UserContext.Provider value={{currentUser, setCurrentUser, setToken}}>
-      <div className="App">
-        <Nav loggedIn={loggedIn} logOut={logOut}/>
-        <Routes loggedIn={loggedIn} />
-      </div>
+      <UserContext.Provider value={{ currentUser, setCurrentUser, setToken }}>
+        <div className="App">
+          <Nav loggedIn={loggedIn} logOut={logOut} />
+          <Routes loggedIn={loggedIn} />
+        </div>
       </UserContext.Provider>
     </BrowserRouter>
   );
