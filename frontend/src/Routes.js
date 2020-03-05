@@ -11,7 +11,7 @@ import Login from './Login';
 import Alert from './Alert';
 import Home from './Home';
 
-function Routes({ setToken, loggedIn }) {
+function Routes({ loggedIn }) {
   return (
     <div className="pt-5">
       <Switch>
@@ -25,7 +25,7 @@ function Routes({ setToken, loggedIn }) {
           <JobList />
         </Route>
         <Route exact path="/login">
-          <Login setToken={setToken} />
+          <Login />
         </Route>
         <Route exact path="/profile">
           <Login />

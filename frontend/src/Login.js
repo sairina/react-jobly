@@ -1,20 +1,42 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import JoblyApi from "./JoblyApi";
+import UserContext from "./UserContext";
 
-function Login({ setToken }) {
+function Login() {
 
-  const [formData, setFormData] = useState({ username: "", password: "" });
+  const { setToken } = useContext(UserContext);
+  const [formData, setFormData] = useState(
+    { 
+      username: "", 
+      password: "",
+      first_name: "",
+      last_name: "",
+      email: "" 
+    });
+
   const history = useHistory();
   const [showLogin, setShowLogin] = useState(false); //toggleForm
   const [showRegistration, setShowRegistration] = useState(false); //toggleForm
 
   // const [alert, setAlert] = useState(null);
 
-  async function handleSubmit(evt) {
+  async function handleLoginSubmit(evt) {
     evt.preventDefault();
     try {
-      let response = await JoblyApi.login(formData);
+      let { username, password } = formData;
+      let response = await JoblyApi.login({username, password});
+      setToken(response);
+      history.push("/companies");
+    } catch (err) {
+      // setAlert(err);
+    }
+  };
+
+  async function handleRegistrationSubmit(evt) {
+    evt.preventDefault();
+    try {
+      let response = await JoblyApi.register(formData);
       setToken(response);
       history.push("/companies");
     } catch (err) {
@@ -42,7 +64,7 @@ function Login({ setToken }) {
 
   const makeLogin = () => {
     return (
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleLoginSubmit}>
         <input
           id="username"
           name="username"
@@ -54,7 +76,7 @@ function Login({ setToken }) {
         <input
           id="password"
           name="password"
-          type="text"
+          type="password"
           placeholder="Password"
           value={formData.password}
           onChange={handleChange}
@@ -67,7 +89,7 @@ function Login({ setToken }) {
 
   const makeRegistration = () => {
     return (
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleRegistrationSubmit}>
         <input
           id="username"
           name="username"
@@ -79,7 +101,7 @@ function Login({ setToken }) {
         <input
           id="password"
           name="password"
-          type="text"
+          type="password"
           placeholder="Password"
           value={formData.password}
           onChange={handleChange}
