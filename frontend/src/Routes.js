@@ -11,7 +11,7 @@ import Login from './Login';
 import Alert from './Alert';
 import Home from './Home';
 
-function Routes({ setToken }) {
+function Routes({ setToken, loggedIn }) {
   return (
     <Switch>
       <Route exact path="/companies">
@@ -32,7 +32,7 @@ function Routes({ setToken }) {
         <Alert />
       </Route>
       <Route exact path="/">
-        <Home />
+        <Home loggedIn={loggedIn} />
       </Route>
       <Redirect to="/" />
     </Switch>

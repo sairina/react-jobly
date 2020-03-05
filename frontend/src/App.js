@@ -28,7 +28,7 @@ function App() {
       {/* <UserContext.Provider > */}
       <div className="App">
         <Nav loggedIn={loggedIn} logOut={logOut}/>
-        <Routes setToken={setToken} />
+        <Routes loggedIn={loggedIn} setToken={setToken} />
       </div>
       {/* </UserContext.Provider> */}
     </BrowserRouter>

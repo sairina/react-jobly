@@ -7,12 +7,12 @@ function Nav({ loggedIn, logOut }) {
 
   let navBarUser = () => {
     return (
-      <ul>
-        <li><NavLink exact to='/'>Home</NavLink></li>
-        <li><NavLink exact to='/companies'>Companies</NavLink></li>
-        <li><NavLink exact to='/jobs'>Jobs</NavLink></li>
-        <li><NavLink exact to='/profile'>Profile</NavLink></li>
-        <li><NavLink exact to='/' onClick={logOut}>Log Out</NavLink></li>
+      <ul className="Nav-navBar navbar-nav ml-auto">
+        {/* <li><NavLink exact to='/' className="nav-item mr-4">Home</NavLink></li> */}
+        <li><NavLink exact to='/companies' className="nav-item mr-4">Companies</NavLink></li>
+        <li><NavLink exact to='/jobs' className="nav-item mr-4">Jobs</NavLink></li>
+        <li><NavLink exact to='/profile' className="nav-item mr-4">Profile</NavLink></li>
+        <li><NavLink exact to='/' onClick={logOut} className="nav-item mr-4">Log Out</NavLink></li>
       </ul>
     );
   };
