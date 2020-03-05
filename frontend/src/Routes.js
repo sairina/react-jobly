@@ -7,7 +7,7 @@ import {
 import CompanyList from './CompanyList';
 import Company from './Company';
 import JobList from './JobList';
-import UserForm from './UserForm';
+import Login from './Login';
 import Alert from './Alert';
 import Home from './Home';
 
@@ -24,11 +24,11 @@ function Routes({ setToken }) {
         <JobList />
       </Route>
       <Route exact path="/login">
-        <UserForm setToken={setToken} />
+        <Login setToken={setToken} />
         {/* <Alert /> */}
       </Route>
       <Route exact path="/profile">
-        <UserForm />
+        <Login />
         <Alert />
       </Route>
       <Route exact path="/">

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter } from "react-router-dom";
 // import { decode } from "jsonwebtoken";
 import './App.css';
@@ -10,15 +10,26 @@ import Routes from "./Routes";
 
 function App() {
   const [token, setToken] = useLocalStorage("_token");
-  console.log('token',token)
+  const [loggedIn, setLoggedIn] = useState(false);
+  console.log('token', token)
+
+  useEffect(() => {
+    let validToken = token ? true : false;
+    setLoggedIn(validToken);
+  }, [token])
+
+  const logOut = () => {
+    setToken(null);
+    setLoggedIn(false);
+  };
 
   return (
     <BrowserRouter>
       {/* <UserContext.Provider > */}
-        <div className="App">
-          <Nav />
-          <Routes setToken={setToken} />
-        </div>
+      <div className="App">
+        <Nav loggedIn={loggedIn} logOut={logOut}/>
+        <Routes setToken={setToken} />
+      </div>
       {/* </UserContext.Provider> */}
     </BrowserRouter>
   );

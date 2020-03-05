@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import JoblyApi from "./JoblyApi";
 
-function UserForm({ setToken }) {
+function Login({ setToken }) {
 
   const [formData, setFormData] = useState({ username: "", password: "" });
   // const [alert, setAlert] = useState(null);
@@ -51,4 +51,4 @@ function UserForm({ setToken }) {
   );
 }
 
-export default UserForm;
+export default Login;

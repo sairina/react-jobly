@@ -4,7 +4,7 @@ import { TOKEN_STORAGE_ID } from "./App.js"
 class JoblyApi {
   static async request(endpoint, paramsOrData = {}, verb = "get") {
     
-    // let _token = localStorage.getItem("_token");
+    let _token = localStorage.getItem("_token");
 
     console.debug("API Call:", endpoint, paramsOrData, verb);
 
