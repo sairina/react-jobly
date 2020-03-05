@@ -13,29 +13,30 @@ import Home from './Home';
 
 function Routes({ setToken, loggedIn }) {
   return (
-    <Switch>
-      <Route exact path="/companies">
-        <CompanyList />
-      </Route>
-      <Route exact path="/companies/:company">
-        <Company />
-      </Route>
-      <Route exact path="/jobs">
-        <JobList />
-      </Route>
-      <Route exact path="/login">
-        <Login setToken={setToken} />
-        {/* <Alert /> */}
-      </Route>
-      <Route exact path="/profile">
-        <Login />
-        <Alert />
-      </Route>
-      <Route exact path="/">
-        <Home loggedIn={loggedIn} />
-      </Route>
-      <Redirect to="/" />
-    </Switch>
+    <div className="pt-5">
+      <Switch>
+        <Route exact path="/companies">
+          <CompanyList />
+        </Route>
+        <Route exact path="/companies/:company">
+          <Company />
+        </Route>
+        <Route exact path="/jobs">
+          <JobList />
+        </Route>
+        <Route exact path="/login">
+          <Login setToken={setToken} />
+        </Route>
+        <Route exact path="/profile">
+          <Login />
+          <Alert />
+        </Route>
+        <Route exact path="/">
+          <Home loggedIn={loggedIn} />
+        </Route>
+        <Redirect to="/" />
+      </Switch>
+    </div>
   );
 }
 

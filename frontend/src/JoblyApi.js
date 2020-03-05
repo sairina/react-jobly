@@ -1,11 +1,11 @@
 import axios from 'axios';
 // import { TOKEN_STORAGE_ID } from "./App.js"
 
+
 class JoblyApi {
   static async request(endpoint, params = {}, verb = "get") {
     
     let _token = localStorage.getItem("_token");
-    console.log("_token in storage", _token);
 
     console.debug("API Call:", endpoint, params, verb);
 

@@ -11,7 +11,6 @@ import Routes from "./Routes";
 function App() {
   const [token, setToken] = useLocalStorage("_token");
   const [loggedIn, setLoggedIn] = useState(false);
-  // console.log('token', token)
 
   useEffect(() => {
     let validToken = token ? true : false;

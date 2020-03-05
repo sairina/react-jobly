@@ -3,7 +3,7 @@ import SearchBar from './SearchBar';
 import JoblyApi from './JoblyApi';
 import JobCard from './JobCard';
 
-function JobList(){
+function JobList() {
   const [jobs, setJobs] = useState([]);
 
 
@@ -22,10 +22,12 @@ function JobList(){
 
   let allJobs = jobs.map(j => <JobCard job={j} key={j.id} />)
 
-  return(
-    <div>
-      <SearchBar filterBySearchObject={filterBySearchObject}/>
-      {allJobs}
+  return (
+    <div className="JobList col-md-8 offset-md-2">
+      <SearchBar filterBySearchObject={filterBySearchObject} />
+      <div className="JobList-Jobs">
+        {allJobs}
+      </div>
     </div>
   );
 }

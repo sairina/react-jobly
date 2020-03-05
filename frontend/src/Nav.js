@@ -8,7 +8,6 @@ function Nav({ loggedIn, logOut }) {
   let navBarUser = () => {
     return (
       <ul className="Nav-navBar navbar-nav ml-auto">
-        {/* <li><NavLink exact to='/' className="nav-item mr-4">Home</NavLink></li> */}
         <li className="nav-item mr-4"><NavLink exact to='/companies' className="nav-link">Companies</NavLink></li>
         <li className="nav-item mr-4"><NavLink exact to='/jobs' className="nav-link">Jobs</NavLink></li>
         <li className="nav-item mr-4"><NavLink exact to='/profile' className="nav-link">Profile</NavLink></li>
@@ -27,7 +26,7 @@ function Nav({ loggedIn, logOut }) {
 
   return (
     <nav className="Nav navbar navbar-expand-md">
-    <NavLink exact to='/' className="navbar-brand">Jobly</NavLink>
+      <NavLink exact to='/' className="navbar-brand">Jobly</NavLink>
       {loggedIn ? navBarUser() : navBar()}
     </nav>
   );

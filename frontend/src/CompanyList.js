@@ -5,7 +5,6 @@ import JoblyApi from './JoblyApi';
 import { v4 as uuid } from "uuid";
 
 function CompanyList() {
-
   const [companies, setCompanies] = useState([]);
 
   useEffect(() => {
@@ -22,11 +21,13 @@ function CompanyList() {
   }
 
   let allCompanies = companies.map(c => <CompanyCard key={uuid()} company={c} />)
-  
-   return (
-    <div>
+
+  return (
+    <div className="CompanyList col-md-8 offset-md-2">
       <SearchBar filterBySearchObject={filterBySearchObject} />
-      {allCompanies}
+      <div className="CardList-Companies">
+        {allCompanies}
+      </div>
     </div>
   );
 }
