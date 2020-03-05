@@ -10,6 +10,7 @@ function Login({ setToken }) {
     evt.preventDefault();
     try {
       let response = await JoblyApi.login(formData);
+      console.log('response', response);
       setToken(response);
     } catch (err) {
       // setAlert(err);

@@ -1,18 +1,18 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { NavLink } from 'react-router-dom';
 import './Nav.css';
 
 function Nav({ loggedIn, logOut }) {
-  console.log('loggedIn', loggedIn)
+  // console.log('loggedIn', loggedIn)
 
   let navBarUser = () => {
     return (
       <ul className="Nav-navBar navbar-nav ml-auto">
         {/* <li><NavLink exact to='/' className="nav-item mr-4">Home</NavLink></li> */}
-        <li><NavLink exact to='/companies' className="nav-item mr-4">Companies</NavLink></li>
-        <li><NavLink exact to='/jobs' className="nav-item mr-4">Jobs</NavLink></li>
-        <li><NavLink exact to='/profile' className="nav-item mr-4">Profile</NavLink></li>
-        <li><NavLink exact to='/' onClick={logOut} className="nav-item mr-4">Log Out</NavLink></li>
+        <li className="nav-item mr-4"><NavLink exact to='/companies' className="nav-link">Companies</NavLink></li>
+        <li className="nav-item mr-4"><NavLink exact to='/jobs' className="nav-link">Jobs</NavLink></li>
+        <li className="nav-item mr-4"><NavLink exact to='/profile' className="nav-link">Profile</NavLink></li>
+        <li className="nav-item mr-4"><NavLink exact to='/' onClick={logOut} className="nav-link">Log Out</NavLink></li>
       </ul>
     );
   };
@@ -20,13 +20,13 @@ function Nav({ loggedIn, logOut }) {
   let navBar = () => {
     return (
       <ul className="Nav-navBar navbar-nav ml-auto">
-        <li><NavLink exact to='/login' className="nav-item mr-4">Login</NavLink></li>
+        <li className="nav-item mr-4"><NavLink exact to='/login' className="nav-link">Login</NavLink></li>
       </ul>
     );
   };
 
   return (
-    <nav className="Nav navbar navbar-expand-lg">
+    <nav className="Nav navbar navbar-expand-md">
     <NavLink exact to='/' className="navbar-brand">Jobly</NavLink>
       {loggedIn ? navBarUser() : navBar()}
     </nav>

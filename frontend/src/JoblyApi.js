@@ -1,19 +1,35 @@
 import axios from 'axios';
-import { TOKEN_STORAGE_ID } from "./App.js"
+// import { TOKEN_STORAGE_ID } from "./App.js"
 
 class JoblyApi {
-  static async request(endpoint, paramsOrData = {}, verb = "get") {
+  static async request(endpoint, params = {}, verb = "get") {
     
     let _token = localStorage.getItem("_token");
+    console.log("_token in storage", _token);
 
-    console.debug("API Call:", endpoint, paramsOrData, verb);
+    console.debug("API Call:", endpoint, params, verb);
+
+    let q;
+
+    if (verb === "get") {
+      q = axios.get(
+        `http://localhost:3001/${endpoint}`, { params: { _token, ...params } });
+    } else if (verb === "post") {
+      q = axios.post(
+        `http://localhost:3001/${endpoint}`, { _token, ...params });
+    } else if (verb === "patch") {
+      q = axios.patch(
+        `http://localhost:3001/${endpoint}`, { _token, ...params });
+    }
 
     try {
-      return (await axios({
-        method: verb,
-        url: `http://localhost:3001/${endpoint}`,
-        [verb === "get" ? "params" : "data"]: paramsOrData
-      })).data;
+      return (await q).data;
+    // try {
+    //   return (await axios({
+    //     method: verb,
+    //     url: `http://localhost:3001/${endpoint}`,
+    //     [verb === "get" ? "params" : "data"]: paramsOrData
+    //   })).data;
       // axios sends query string data via the "params" key,
       // and request body data via the "data" key,
       // so the key we need depends on the HTTP verb
