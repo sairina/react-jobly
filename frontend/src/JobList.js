@@ -5,7 +5,7 @@ import JobCard from './JobCard';
 
 function JobList() {
   const [jobs, setJobs] = useState([]);
-
+  
   useEffect(() => {
     async function getJobs() {
       let response = await JoblyApi.getJobs();
@@ -18,6 +18,7 @@ function JobList() {
     let jobs = await JoblyApi.getJobs(searchObject);
     setJobs(jobs);
   }
+
 
   const allJobs = jobs.map(j => <JobCard job={j} key={j.id} />)
 

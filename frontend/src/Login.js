@@ -19,7 +19,6 @@ function Login() {
   const [showLogin, setShowLogin] = useState(false); //toggleForm
   const [showRegistration, setShowRegistration] = useState(false); //toggleForm
 
-  // const [alert, setAlert] = useState(null);
 
   async function handleLoginSubmit(evt) {
     evt.preventDefault();
@@ -30,6 +29,7 @@ function Login() {
       history.push("/companies");
     } catch (err) {
       // setAlert(err);
+      console.log('ERROR')
     }
   };
 
@@ -41,6 +41,7 @@ function Login() {
       history.push("/companies");
     } catch (err) {
       // setAlert(err);
+      console.log('ERROR')
     }
   };
 
@@ -131,7 +132,6 @@ function Login() {
           onChange={handleChange}
         />
         <button>Submit</button>
-        {/* {alert ? <Alert /> : ''} */}
       </form>
     );
   }
