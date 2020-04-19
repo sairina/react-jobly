@@ -2,7 +2,7 @@
 
 
 const jwt = require("jsonwebtoken");
-const {SECRET} = require("../config");
+const { SECRET } = require("../config");
 
 
 /** Middleware to use when they must provide a valid token.
