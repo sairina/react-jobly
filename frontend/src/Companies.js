@@ -6,7 +6,7 @@ import { v4 as uuid } from "uuid";
 import UserContext from "./UserContext";
 import { useHistory } from "react-router-dom";
 
-function CompanyList() {
+function Companies() {
   const { currentUser } = useContext(UserContext);
   const history = useHistory();
 
@@ -36,10 +36,10 @@ function CompanyList() {
     </div>
 
   return (
-    <div className="CompanyList col-md-8 offset-md-2">
+    <div className="Companies col-md-8 offset-md-2">
       {!currentUser ? history.push('/') : pageDisplay}
     </div>
   );
 }
 
-export default CompanyList;
+export default Companies;

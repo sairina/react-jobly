@@ -5,7 +5,7 @@ import JoblyApi from './JoblyApi';
 import JobCard from './JobCard';
 import UserContext from "./UserContext";
 
-function JobList() {
+function Jobs() {
   const { currentUser } = useContext(UserContext);
   const history = useHistory();
 
@@ -29,16 +29,16 @@ function JobList() {
   const pageDisplay =
     <div>
       <SearchBar filterBySearchObject={filterBySearchObject} />
-      <div className="JobList-Jobs">
+      <div className="Jobs-Jobs">
         {allJobs}
       </div>
     </div>
 
   return (
-    <div className="JobList col-md-8 offset-md-2">
+    <div className="Jobs col-md-8 offset-md-2">
       {!currentUser ? history.push('/') : pageDisplay}
     </div>
   );
 }
 
-export default JobList;
+export default Jobs;

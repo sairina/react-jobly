@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
 import UserContext from "./UserContext";
 import JoblyApi from "./JoblyApi";
+import Alert from "./Alert";
 
 function Profile() {
 
@@ -22,7 +23,7 @@ function Profile() {
     evt.preventDefault();
     try {
       let { first_name, last_name, email, photo_url } = userForm;
-      let response = await JoblyApi.updateUser({first_name, last_name, email, photo_url});
+      let response = await JoblyApi.saveProfile({first_name, last_name, email, photo_url});
     } catch (err) {
       // setAlert(err);
     }

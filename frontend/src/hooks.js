@@ -1,14 +1,13 @@
 import { useState, useEffect } from "react";
 
-function useLocalStorage(key, firstValue = null) {
-  const initialValue = localStorage.getItem(key) || firstValue;
-
+function useLocalStorage(key, value = null) {
+  const initialValue = localStorage.getItem(key) || value;
   const [item, setItem] = useState(initialValue);
 
   useEffect(() => {
     if (!item) {
       localStorage.removeItem(key);
-    } else {
+    } else {  
       localStorage.setItem(key, item);
     }
   }, [key, item]);

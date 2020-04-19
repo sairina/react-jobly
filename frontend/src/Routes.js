@@ -1,44 +1,39 @@
-import React, { useContext } from 'react';
-import {
-  Switch,
-  Route,
-  Redirect
-} from 'react-router-dom';
-import UserContext from "./UserContext";
-import CompanyList from './CompanyList';
-import Company from './Company';
-import JobList from './JobList';
-import Login from './Login';
-import Alert from './Alert';
+import React from 'react';
+import { Switch, Route } from 'react-router-dom';
 import Home from './Home';
+import Register from './Register';
+import Login from './Login';
+import PrivateRoute from "./PrivateRoute";
+import Companies from './Companies';
+import Jobs from './Jobs';
+import Company from './Company';
 import Profile from './Profile';
 
-function Routes({ loggedIn }) {
-  const { currentUser, setCurrentUser } = useContext(UserContext);
-
+function Routes({setBackground, setToken}) {
   return (
     <div className="pt-5">
       <Switch>
-        <Route exact path="/companies">
-          <CompanyList />
+        <Route exact path="/">
+          <Home setBackground={setBackground}/>
         </Route>
-        <Route exact path="/companies/:company">
-          <Company />
-        </Route>
-        <Route exact path="/jobs">
-          <JobList />
-        </Route>
-        <Route exact path="/profile">
-          { currentUser ? <Profile /> : <Redirect to="/" /> }
-          {/* <div>TEST</div> */}
+        <Route exact path="/register">
+          <Register setBackground={setBackground} setToken={setToken} />
         </Route>
         <Route exact path="/login">
-          <Login />
+          <Login setBackground={setBackground} setToken={setToken} />
         </Route>
-        <Route exact path="/">
-          <Home loggedIn={loggedIn} />
-        </Route>
-        <Redirect to="/" />
+        <PrivateRoute exact path="/companies">
+          <Companies />
+        </PrivateRoute>
+        <PrivateRoute path="/companies/:handle">
+          <Company />
+        </PrivateRoute>
+        <PrivateRoute exact path="/jobs">
+          <Jobs />
+        </PrivateRoute>
+        <PrivateRoute path="/profile">
+          <Profile />
+        </PrivateRoute>
       </Switch>
     </div>
   );

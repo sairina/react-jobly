@@ -1,0 +1,12 @@
+.Navigation {
+  position: relative;
+}
+
+.navbar-brand {
+  font-weight: bold;
+  color: black;
+}
+
+.nav-link {
+  color: black;
+}

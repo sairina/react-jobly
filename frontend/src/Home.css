@@ -1,5 +1,10 @@
 .Home {
-  height: calc(100vh - 150px);
+  position: relative;
+  height: 50vh;
   display: flex;
-  align-items: center
+  align-items: center;
+}
+
+.btn-login {
+  background-color: rgb(175, 191, 206);
 }
