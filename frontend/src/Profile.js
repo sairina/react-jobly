@@ -20,10 +20,6 @@ function Profile() {
   async function handleSubmit(evt) {
     evt.preventDefault();
     try {
-<<<<<<< HEAD
-      let { first_name, last_name, email, photo_url } = userForm;
-      let response = await JoblyApi.saveProfile({first_name, last_name, email, photo_url});
-=======
       let profileData = {
         first_name: userForm.first_name || undefined,
         last_name: userForm.last_name || undefined,
@@ -33,14 +29,13 @@ function Profile() {
       };
 
       let username = currentUser.username;
-      let response = await JoblyApi.updateUser(username, profileData);
+      let response = await JoblyApi.saveProfile(username, profileData);
       console.log('UPDATED')
       setCurrentUser(response);
       setUserForm(fData => ({
         ...fData,
         password: ""
       }))
->>>>>>> 960c651198975465fe774249134a07a01e89a468
     } catch (err) {
       // setAlert(err);
       console.log('ERROR');

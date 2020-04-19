@@ -1,16 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { useHistory } from 'react-router-dom';
 import SearchBar from './SearchBar';
 import JoblyApi from './JoblyApi';
 import JobCard from './JobCard';
+import UserContext from "./UserContext";
 
-<<<<<<< HEAD:frontend/src/Jobs.js
 function Jobs() {
   const { currentUser } = useContext(UserContext);
   const history = useHistory();
 
-=======
-function JobList() {
->>>>>>> 960c651198975465fe774249134a07a01e89a468:frontend/src/JobList.js
   const [jobs, setJobs] = useState([]);
   
   useEffect(() => {
@@ -27,30 +25,17 @@ function JobList() {
   }
 
 
-<<<<<<< HEAD:frontend/src/Jobs.js
   const pageDisplay =
     <div>
       <SearchBar filterBySearchObject={filterBySearchObject} />
       <div className="Jobs-Jobs">
-        {allJobs}
+        {jobs}
       </div>
     </div>
 
   return (
     <div className="Jobs col-md-8 offset-md-2">
       {!currentUser ? history.push('/') : pageDisplay}
-=======
-  const allJobs = jobs.map(j => <JobCard job={j} key={j.id} />)
-
-  return (
-    <div className="JobList col-md-8 offset-md-2">
-      <div>
-        <SearchBar filterBySearchObject={filterBySearchObject} />
-        <div className="JobList-Jobs">
-          {allJobs}
-        </div>
-      </div>
->>>>>>> 960c651198975465fe774249134a07a01e89a468:frontend/src/JobList.js
     </div>
   );
 }

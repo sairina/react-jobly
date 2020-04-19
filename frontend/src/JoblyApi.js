@@ -67,22 +67,10 @@ class JoblyApi {
     return res.user;
   }
 
-<<<<<<< HEAD
   static async saveProfile(username, data) {
     let res = await this.request(`users/${username}`, data, "patch");
     return res.user;
   }
-=======
-  static async updateUser(username, data) {
-    let res = await this.request(`users/${username}`, data, "patch");
-    return res.user;
-  }
-  
-  static async apply(id, data) {
-    let res = await this.request(`jobs/${id}/apply`, data, "post");
-    return res.message;
-  }
->>>>>>> 960c651198975465fe774249134a07a01e89a468
 }
 
 export default JoblyApi;
