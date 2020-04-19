@@ -27,6 +27,7 @@ function App() {
    *  - jwt verification handled by the backend
    */
   useEffect(() => {
+<<<<<<< HEAD
     const getCurrentUser = async () => {
       try {
         let { username } = decode(token);
@@ -36,6 +37,16 @@ function App() {
         setCurrentUser(null);
       }
       setInfoLoaded(true);
+=======
+    if (localStorage.getItem("_token")) {
+      const getUser = async () => {
+        let { username } = decode(token);
+        let response = await JoblyApi.getCurrentUser(username);
+        setCurrentUser(response);
+      }
+      setLoggedIn(token);
+      getUser();
+>>>>>>> 960c651198975465fe774249134a07a01e89a468
     }
     setInfoLoaded(false);
     getCurrentUser();
@@ -53,6 +64,7 @@ function App() {
 
   return (
     <BrowserRouter>
+<<<<<<< HEAD
       <UserContext.Provider value={{ currentUser, setCurrentUser, showBackground, setShowBackground }}>
       <div className="App">
         { showBackground && backgroundLoaded ? 
@@ -67,6 +79,13 @@ function App() {
           onLoad={() => setBackgroundLoaded(true)}
         />
       </div>
+=======
+      <UserContext.Provider value={{ currentUser, setCurrentUser, setToken }}>
+        <div className="App">
+          <Nav loggedIn={loggedIn} logOut={logOut} />
+          <Routes loggedIn={loggedIn} />
+        </div>
+>>>>>>> 960c651198975465fe774249134a07a01e89a468
       </UserContext.Provider>
     </BrowserRouter>
   );

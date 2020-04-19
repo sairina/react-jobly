@@ -6,7 +6,11 @@ function PrivateRoute({ exact, path, children }) {
   const { currentUser } = useContext(UserContext);
 
   if (!currentUser) {
+<<<<<<< HEAD
     return <Redirect to="/login" />;
+=======
+    return <Redirect to="/" />;
+>>>>>>> 960c651198975465fe774249134a07a01e89a468
   }
 
   return (
