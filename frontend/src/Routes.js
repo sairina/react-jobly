@@ -9,18 +9,18 @@ import Company from './Company';
 import Profile from './Profile';
 import PrivateRoute from "./PrivateRoute";
 
-function Routes({setBackground, setToken}) {
+function Routes({ setToken }) {
   return (
     <div className="pt-5">
       <Switch>
         <Route exact path="/">
-          <Home setBackground={setBackground}/>
+          <Home />
         </Route>
         <Route exact path="/register">
-          <Register setBackground={setBackground} setToken={setToken} />
+          <Register setToken={setToken} />
         </Route>
         <Route exact path="/login">
-          <Login setBackground={setBackground} setToken={setToken} />
+          <Login setToken={setToken} />
         </Route>
         <PrivateRoute exact path="/companies">
           <Companies />

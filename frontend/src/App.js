@@ -1,21 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter } from "react-router-dom";
 import { decode } from "jsonwebtoken";
-import { ClipLoader } from "react-spinners";
+import { FadeLoader } from "react-spinners";
 import useLocalStorage from "./hooks";
-// import BackgroundImage from "./BackgroundImage";
 import Navigation from "./Navigation";
 import Routes from "./Routes";
 import JoblyApi from "./JoblyApi";
 import UserContext from "./UserContext";
-import backgroundImg from './georgie-cobbs-unsplash.jpg';
-import "./App.css";
+import './App.css';
 
 export const TOKEN_STORAGE_ID = "jobly-token";
 
 function App() {
-  const [showBackground, setShowBackground] = useState(true);
-  const [backgroundLoaded, setBackgroundLoaded] = useState(false);
   const [infoLoaded, setInfoLoaded] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
 
@@ -44,56 +40,26 @@ function App() {
   const handleLogOut = () => {
     setCurrentUser(null);
     setToken(null);
-    setShowBackground(true);
   };
 
   if (!infoLoaded) {
-    return <ClipLoader style={{textAlign: "center"}} size={150} color="#123abc" />;
+    return (
+    <div className="fade-loader-container d-flex align-items-center justify-content-center" style={{height: '75vh'}}>
+      <FadeLoader color="#123abc"/>
+    </div>
+    );
   }
 
   return (
     <BrowserRouter>
-      <UserContext.Provider value={{ currentUser, setCurrentUser, showBackground, setShowBackground }}>
+      <UserContext.Provider value={{ currentUser, setCurrentUser }}>
       <div className="App">
-        { showBackground && backgroundLoaded ? 
-          <>
-            <Navigation logout={handleLogOut}/>
-            <Routes setToken={setToken} />
-          </> : null}
-        <img
-          className='bg'
-          style={backgroundLoaded ? {display: 'block'} : {display: 'none'}}
-          src={backgroundImg}
-          onLoad={() => setBackgroundLoaded(true)}
-        />
+        <Navigation logout={handleLogOut}/>
+        <Routes setToken={setToken} />
       </div>
       </UserContext.Provider>
     </BrowserRouter>
   );
-
-  // return (
-  //   <div>
-  //     {backgroundLoaded ? 'HAS LOADED' : 'Loading'}
-  //     <img
-  //       className='bg'
-  //       style={backgroundLoaded ? {} : { display: 'none' }}
-  //       src={backgroundImg}
-  //       onLoad={() => setBackgroundLoaded(true)}
-  //     />
-  //   </div>
-  // );
-
-  // return (
-  //   <BrowserRouter>
-  //     <UserContext.Provider value={{ currentUser, setCurrentUser, showBackground, setShowBackground }}>
-  //     <div className="App">
-  //       { showBackground && backgroundLoaded ? <BackgroundImage/> : null }
-  //       <Navigation logout={handleLogOut}/>
-  //       <Routes setToken={setToken} />
-  //     </div>
-  //     </UserContext.Provider>
-  //   </BrowserRouter>
-  // );
 }
 
 export default App;

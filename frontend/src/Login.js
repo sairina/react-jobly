@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import Alert from "./Alert";
 import JoblyApi from "./JoblyApi";
 
-function Login({ setBackground, setToken }) {
+function Login({ setToken }) {
   const history = useHistory();
   const [loginData, setLoginData] = useState(
     {
@@ -30,7 +30,6 @@ function Login({ setBackground, setToken }) {
     }
 
     setToken(token);
-    setBackground(false);
     history.push("/jobs");
   }
 
