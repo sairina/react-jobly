@@ -73,11 +73,7 @@ function Login({ setToken }) {
               <Link className="btn btn-outline-primary float-left" to="/register">
                 Create Account
               </Link>
-              <button
-                type="submit"
-                className="btn btn-primary float-right"
-                onSubmit={handleSubmit}
-              >
+              <button className="btn btn-primary float-right">
                 Submit
               </button>
             </form>

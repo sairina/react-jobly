@@ -11,13 +11,13 @@ function Jobs() {
 
   const [jobs, setJobs] = useState([]);
   
-  useEffect(() => {
-    async function getJobs() {
-      let response = await JoblyApi.getJobs();
-      setJobs(response);
-    }
-    getJobs();
-  }, []);
+  // useEffect(() => {
+  //   async function getJobs() {
+  //     let response = await JoblyApi.getJobs();
+  //     setJobs(response);
+  //   }
+  //   getJobs();
+  // }, []);
 
   const filterBySearchObject = async (searchObject) => {
     let jobs = await JoblyApi.getJobs(searchObject);

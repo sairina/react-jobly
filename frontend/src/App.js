@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter } from "react-router-dom";
 import { decode } from "jsonwebtoken";
-import { FadeLoader } from "react-spinners";
+import { PropagateLoader } from "react-spinners";
+import "./App.css";
 import useLocalStorage from "./hooks";
 import Navigation from "./Navigation";
 import Routes from "./Routes";
 import JoblyApi from "./JoblyApi";
 import UserContext from "./UserContext";
-import './App.css';
 
 export const TOKEN_STORAGE_ID = "jobly-token";
 
-function App() {
+const App = () => {
   const [infoLoaded, setInfoLoaded] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
 
@@ -44,8 +44,8 @@ function App() {
 
   if (!infoLoaded) {
     return (
-    <div className="fade-loader-container d-flex align-items-center justify-content-center" style={{height: '75vh'}}>
-      <FadeLoader color="#123abc"/>
+    <div className="fade-loader-container d-flex align-items-center justify-content-center" style={{height: '85vh'}}>
+      <PropagateLoader size='15' color="#123abc"/>
     </div>
     );
   }
