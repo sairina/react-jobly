@@ -1,31 +1,79 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useParams } from "react-router-dom";
 import JoblyApi from './JoblyApi';
 import JobCard from './JobCard';
+import UserContext from "./UserContext";
 
-function Company() {
-  const { company } = useParams();
-  const [companyObj, setCompanyObj] = useState({});
+const Company = () => {
+  const { handle } = useParams();
+  const { currentUser } = useContext(UserContext);
+
+  const [company, setCompany] = useState(null);
 
   useEffect(() => {
-    async function getCompany() {
-      let response = await JoblyApi.getCompany(company);
-      setCompanyObj(response);
-    }
-    getCompany();
-  }, [company]);
+    const getCompanyAndJobs = async () => {
+      const { jobs } = currentUser;
+      const companyResponse = await JoblyApi.getCompany(handle);
 
-  const jobCardsDisplay = companyObj.jobs ?
-    companyObj.jobs.map(j => <JobCard job={j} key={j.id} />)
-    : '';
+      // create a set with IDs of jobs applied to
+      const jobsIDsAppliedTo = new Set(jobs.map(job => job.id));
+
+      // add key for each job in company if it is applied to ---
+      // this let us handle the "apply/applied" button
+      companyResponse.jobs = companyResponse.jobs.map(job => ({
+        ...job,
+        state: jobsIDsAppliedTo.has(job.id) ? "applied" : null
+      }));
+
+      setCompany(companyResponse);
+    }
+
+    getCompanyAndJobs();
+  }, [handle, currentUser]);
+
+
+  const apply = async (idx) => {
+    if (company && Array.isArray(company.jobs) && idx < company.jobs.length) {
+      let jobId = company.jobs[idx].id;
+      let message = await JoblyApi.applyToJob(jobId);
+      setCompany(c => {
+        let newCompany = { ...c };
+        newCompany.jobs = newCompany.jobs.map(job =>
+          job.id === jobId ? { ...job, state: message } : job
+        );
+        return newCompany;
+      });
+    }
+  }
+
+  if (!company) {
+    return (
+      <div className="fade-loader-container d-flex align-items-center justify-content-center" style={{ height: '85vh' }}>
+        Loading jobs...
+      </div>
+    );
+  }
 
   return (
-    <div>
-      <div>
-        <h2>{companyObj.name}</h2>
-        <p>{companyObj.description}</p>
-        {jobCardsDisplay}
+    <div className="col-md-8 offset-md-2">
+      <div className="container">
+        <h3 className="text-capitalize">{company.name}</h3>
+        <p>{company.description}</p>
       </div>
+      {company.jobs.length ? (
+        <div className="JobList">
+          {company.jobs.map((jobData, idx) => (
+            <JobCard
+              job={jobData}
+              key={jobData.id}
+              idx={idx}
+              handleApply={() => apply(idx)}
+            />
+          ))}
+        </div>
+      ) : (
+          <p className="lead">Sorry, no jobs were found!</p>
+        )}
     </div>
   );
 }

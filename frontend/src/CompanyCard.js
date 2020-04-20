@@ -1,20 +1,20 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import defaultLogo from "./default-logo.png";
+import './Card.css';
 
-function CompanyCard({ company }) {
-
+function CompanyCard({ company = {} }) {
+  const { name, description, handle } = company;
   return (
-    <div className="CompanyCard">
-      <NavLink exact to={`/companies/${company.handle}`}>
-        <div className="CompanyCard-details">
-          <h6 className="card-title d-flex justify-content-between">
-            <span className="text-capitalize">{company.name}</span>
-            <img src={company.logo_url} alt={company.name} />
-          </h6>
-          <p>{company.description}</p>
-        </div>
-      </NavLink>
-    </div>
+    <Link className="CompanyCard Card card" to={`/companies/${handle}`}>
+      <div className="card-body">
+        <h6 className="card-title d-flex justify-content-between">
+          <span className="text-capitalize">{name}</span>
+          <img src={defaultLogo} alt={`${name} Logo`} />
+        </h6>
+        <p>{description}</p>
+      </div>
+    </Link>
   );
 }
 

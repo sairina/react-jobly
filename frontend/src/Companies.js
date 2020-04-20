@@ -1,34 +1,44 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { useHistory } from 'react-router-dom';
-import CompanyCard from './CompanyCard';
-import SearchBar from './SearchBar';
 import JoblyApi from './JoblyApi';
-import { v4 as uuid } from "uuid";
-import UserContext from "./UserContext";
+import SearchBar from './SearchBar';
+import CompanyCard from './CompanyCard';
 
-function Companies() {
-  const { currentUser } = useContext(UserContext);
-  const history = useHistory();
-
+const Companies = () => {
   const [companies, setCompanies] = useState([]);
 
-  useEffect(() => {
-    async function getCompanies() {
-      let response = await JoblyApi.getCompanies();
-      setCompanies(response);
-    }
-    getCompanies();
+  const searchCompanies = async (search) => {
+    let companies = await JoblyApi.getCompanies(search);
+    setCompanies(companies);
+  }
 
+  useEffect(() => {
+    searchCompanies();
   }, []);
 
-  const filterBySearchObject = async (searchObject) => {
-    let companies = await JoblyApi.getCompanies(searchObject);
-    setCompanies(companies);
+
+  if (!companies.length) {
+    return (
+      <div className="d-flex align-items-center justify-content-center" style={{height: '65vh'}}>
+        Loading companies...
+      </div>
+    );
   }
 
   return (
     <div className="Companies col-md-8 offset-md-2">
-      {!currentUser ? history.push('/') : 'pageDisplay'}
+      <SearchBar searchFor={searchCompanies} />
+      {companies.length ? (
+        <div className="JobList">
+          {companies.map((companyData, idx) => (
+            <CompanyCard
+              company={companyData}
+              key={companyData.handle}
+            />
+          ))}
+        </div>
+      ) : (
+        <p className="lead">Sorry, no results were found!</p>
+      )}
     </div>
   );
 }

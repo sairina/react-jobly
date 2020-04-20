@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 
-function SearchBar({ filterBySearchObject }) {
-  const [searchObject, setSearchObject] = useState({ search: "" });
+function SearchBar({ searchFor }) {
+  const [searchTerm, setSearchTerm] = useState("");
 
   const handleSubmit = evt => {
     evt.preventDefault();
-    filterBySearchObject(searchObject);
+    searchFor(searchTerm);
   };
 
   const handleChange = evt => {
     const { name, value } = evt.target;
-    setSearchObject(sData => ({
+    setSearchTerm(sData => ({
       ...sData,
       [name]: value
     }));
@@ -25,11 +25,11 @@ function SearchBar({ filterBySearchObject }) {
             name="search"
             type="text"
             placeholder="Search.."
-            value={searchObject.search}
+            value={searchTerm}
             onChange={handleChange}
           />
-          <div className="input-group-btn">
-            <button className="btn btn-lg btn-primary" type="submit">
+          <div className="input-group-append input-group-btn">
+            <button className="btn btn-lg btn-primary">
               Submit
             </button>
           </div>

@@ -1,34 +1,31 @@
 import React, { useState, useContext } from 'react';
-import userContext from "./UserContext";
-import JoblyApi from './JoblyApi';
+import './Card.css';
 
-function JobCard({ job }) {
-  const { currentUser, setCurrentUser } = useContext(userContext);
-  const [applied, setApplied] = useState(false);
+const JobCard = ({ job = {}, handleApply }) => {
+  const { title, salary, equity } = job;
 
-  let applyButtonText;
+  let formatCurrency = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+  });
 
-  const handleApply = async () => {
-    try {
-      let response = await JoblyApi.apply(job.id, currentUser.username);
-      applyButtonText = response.message;
-      setApplied(true);
-      console.log(response)
-    } catch (err) {
-      console.log('ERROR');
-    }
-  }
-  
-  //TODO: FIX APPLY BUTTON TEXT
+  let formattedSalary = formatCurrency.format(salary).slice(0, -3);
+  let formattedEquity = Math.round(equity * 100, 0) + '%';
 
   return (
-    <div className="CompanyCard">
-      <div className="JobCard-details">
-        <h2>{job.title}</h2>
-        <p>Salary: {job.salary}</p>
-        <p>Equity: {job.equity}</p>
-        <button onClick={handleApply}>
-          {applyButtonText ? applyButtonText : "Apply"}
+    <div className="JobCard Card card">
+      <div className="card-body">
+        <h6 className="card-title d-flex justify-content-between">
+          <span className="text-capitalize">{title}</span>
+        </h6>
+        <div>Salary: {formattedSalary}</div>
+        <div>Equity: {formattedEquity}</div>
+        <button
+          className="btn btn-secondary font-weight-bold text-uppercase float-right"
+          onClick={handleApply}
+          disabled={job.state}
+        >
+          {job.state ? "Applied" : "Apply"}
         </button>
       </div>
     </div>
