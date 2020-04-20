@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React from 'react';
 import './Card.css';
 
 const JobCard = ({ job = {}, handleApply }) => {
@@ -21,7 +21,7 @@ const JobCard = ({ job = {}, handleApply }) => {
         <div>Salary: {formattedSalary}</div>
         <div>Equity: {formattedEquity}</div>
         <button
-          className="btn btn-secondary font-weight-bold float-right"
+          className="btn btn-outline-secondary font-weight-bold float-right"
           onClick={handleApply}
           disabled={job.state}
         >

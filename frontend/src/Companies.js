@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState } from 'react';
 import JoblyApi from './JoblyApi';
 import SearchBar from './SearchBar';
 import CompanyCard from './CompanyCard';
@@ -6,7 +6,6 @@ import { PropagateLoader } from "react-spinners";
 
 const Companies = () => {
   const [companies, setCompanies] = useState([]);
-  console.log(companies);
 
   const searchCompanies = async (search) => {
     let companies = await JoblyApi.getCompanies(search);
@@ -19,7 +18,7 @@ const Companies = () => {
 
   if (!companies.length) {
     return (
-      <div className="fade-loader-container d-flex align-items-center justify-content-center" style={{height: '65vh'}}>
+      <div className="fade-loader-container d-flex align-items-center justify-content-center" style={{height: '50vh'}}>
         <PropagateLoader size='15px' color="#123abc"/>
       </div>
     );

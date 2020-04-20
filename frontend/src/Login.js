@@ -46,7 +46,7 @@ const Login = ({ setToken }) => {
       <div className="container col-md-6 offset-md-3 col-lg-4 offset-lg-4">
         <div className="card">
           <div className="card-body">
-            <h2 className="card-title text-center mb-4">Login</h2>
+            <h3 className="card-title text-center mb-4">Login</h3>
             <form onSubmit={handleSubmit}>
               <div className="form-group">
                 <label>Username</label>

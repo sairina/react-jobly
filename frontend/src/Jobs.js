@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import SearchBar from './SearchBar';
 import JoblyApi from './JoblyApi';
 import JobCard from './JobCard';
@@ -26,7 +26,7 @@ const Jobs = () => {
 
   if (!jobs.length) {
     return (
-      <div className="fade-loader-container d-flex align-items-center justify-content-center" style={{height: '65vh'}}>
+      <div className="fade-loader-container d-flex align-items-center justify-content-center" style={{height: '50vh'}}>
         <PropagateLoader size='15px' color="#123abc"/>
       </div>
     );
