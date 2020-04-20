@@ -1,5 +1,4 @@
 App
-├── BackgroundImage
 ├── Navigation
 └─┬ Routes
   ├── Home

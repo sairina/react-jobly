@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import JoblyApi from './JoblyApi';
 import JobCard from './JobCard';
 import UserContext from "./UserContext";
+import { PropagateLoader } from "react-spinners";
 
 const Company = () => {
   const { handle } = useParams();
@@ -48,8 +49,8 @@ const Company = () => {
 
   if (!company) {
     return (
-      <div className="fade-loader-container d-flex align-items-center justify-content-center" style={{ height: '85vh' }}>
-        Loading jobs...
+      <div className="fade-loader-container d-flex align-items-center justify-content-center" style={{ height: '65vh' }}>
+        <PropagateLoader size='15px' color="#123abc" />
       </div>
     );
   }

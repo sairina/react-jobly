@@ -9,7 +9,7 @@ import Company from './Company';
 import Profile from './Profile';
 import PrivateRoute from "./PrivateRoute";
 
-function Routes({ setToken }) {
+const Routes = ({ setToken }) => {
   return (
     <div className="pt-5">
       <Switch>

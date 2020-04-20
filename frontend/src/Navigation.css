@@ -1,12 +1,13 @@
 .Navigation {
-  position: relative;
+  background-color: white;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.125);
 }
 
-.navbar-brand {
+.nav-link, .navbar-brand {
+  color: black;
+}
+
+.nav-link-main.active {
   font-weight: bold;
-  color: black;
-}
-
-.nav-link {
-  color: black;
+  color: #007bff;
 }

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function SearchBar({ searchFor }) {
+const SearchBar = ({ searchFor }) => {
   const [searchTerm, setSearchTerm] = useState("");
 
   const handleSubmit = evt => {

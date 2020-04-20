@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter } from "react-router-dom";
 import { decode } from "jsonwebtoken";
-import { PropagateLoader } from "react-spinners";
-import "./App.css";
 import useLocalStorage from "./hooks";
 import Navigation from "./Navigation";
 import Routes from "./Routes";
@@ -43,11 +41,7 @@ const App = () => {
   };
 
   if (!infoLoaded) {
-    return (
-    <div className="fade-loader-container d-flex align-items-center justify-content-center" style={{height: '85vh'}}>
-      <PropagateLoader size='15' color="#123abc"/>
-    </div>
-    );
+    return null;
   }
 
   return (

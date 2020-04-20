@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import Alert from "./Alert";
 import JoblyApi from "./JoblyApi";
 
-function Login({ setToken }) {
+const Login = ({ setToken }) => {
   const history = useHistory();
   const [loginData, setLoginData] = useState(
     {
@@ -73,7 +73,10 @@ function Login({ setToken }) {
               <Link className="btn btn-outline-primary float-left" to="/register">
                 Create Account
               </Link>
-              <button className="btn btn-primary float-right">
+              <button 
+                className="btn btn-primary float-right"
+                onSubmit={handleSubmit}
+              >
                 Submit
               </button>
             </form>
