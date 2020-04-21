@@ -9,11 +9,7 @@ const SearchBar = ({ searchFor }) => {
   };
 
   const handleChange = evt => {
-    const { name, value } = evt.target;
-    setSearchTerm(sData => ({
-      ...sData,
-      [name]: value
-    }));
+    setSearchTerm(evt.target.value);
   };
 
 

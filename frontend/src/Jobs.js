@@ -36,7 +36,7 @@ const Jobs = () => {
     <div className="Jobs col-md-8 offset-md-2">
       <SearchBar searchFor={searchJobs} />
       {jobs.length ? (
-        <div className="JobList">
+        <div className="JobList row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-3">
           {jobs.map((jobData, idx) => (
             <JobCard
               job={jobData}

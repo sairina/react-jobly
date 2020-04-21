@@ -56,13 +56,13 @@ const Company = () => {
   }
 
   return (
-    <div className="col-md-8 offset-md-2">
+    <div className="col-sm-8 offset-sm-2">
       <div className="container">
         <h3 className="text-capitalize">{company.name}</h3>
         <p>{company.description}</p>
       </div>
       {company.jobs.length ? (
-        <div className="JobList">
+        <div className="JobList row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3">
           {company.jobs.map((jobData, idx) => (
             <JobCard
               job={jobData}
