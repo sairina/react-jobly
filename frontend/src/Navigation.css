@@ -4,10 +4,11 @@
 }
 
 .nav-link, .navbar-brand {
-  color: black;
+  color: #006666;
+  font-weight: bold;
 }
 
 .nav-link-main.active {
   font-weight: bold;
-  color: #007bff;
+  color: #81b2e6;
 }
