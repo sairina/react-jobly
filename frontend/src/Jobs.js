@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import SearchBar from './SearchBar';
 import JoblyApi from './JoblyApi';
 import JobCard from './JobCard';
-import { PropagateLoader } from "react-spinners";
+import { ClipLoader } from "react-spinners";
 
 const Jobs = () => {
   const [jobs, setJobs] = useState([]);
@@ -27,7 +27,7 @@ const Jobs = () => {
   if (!jobs.length) {
     return (
       <div className="fade-loader-container d-flex align-items-center justify-content-center" style={{height: '50vh'}}>
-        <PropagateLoader size='15px' color="#123abc"/>
+        <ClipLoader size='30px' color="#006666"/>
       </div>
     );
   }
